@@ -8,11 +8,11 @@ def endpoint(event, context):
 
     if str(event['requestContext']['httpMethod']) == "GET":
         body = {
-            "request type": "" + str(event['requestContext']['httpMethod'])
+            "request type": "" + str(event)
         }
     elif str(event['requestContext']['httpMethod']) == "POST":
         body = {
-            "request type": "" + str(event['requestContext']['httpMethod'])
+            "User Said": event['body'].split("=")[1].replace('+', ' ')
         }
     else:
         body={
