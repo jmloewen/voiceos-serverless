@@ -6,6 +6,9 @@ provider:
   name: aws
   runtime: python2.7
 
+plugins:
+  - serverless-python-requirements
+
 functions:
   currentTime:
     handler: handler.endpoint
