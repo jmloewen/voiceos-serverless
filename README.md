@@ -3,7 +3,10 @@ title: AWS Simple HTTP Endpoint example in Python
 description: This example demonstrates how to setup a simple HTTP GET endpoint. Once you ping it, it will reply with the current time.
 layout: Doc
 -->
+serverless packaging
+https://serverless.com/blog/serverless-python-packaging/
 npm install --save-dev serverless-python-requirements
+
 
 # Simple HTTP Endpoint Example
 
