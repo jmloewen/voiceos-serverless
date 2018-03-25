@@ -25,8 +25,9 @@ npm install --save-dev serverless-python-requirements
 ask james to turn on the server because it is too expensive to run the server all the time
 
 
-## Deploy 
+# Deploy 
 serverless deploy
+serverless deploy function --function OnVoiceOsEntry
 once  you deploy will get endpoint
 
 ##POST request 
