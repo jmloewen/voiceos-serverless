@@ -30,7 +30,10 @@ serverless deploy
 serverless deploy function --function OnVoiceOsEntry
 once  you deploy will get endpoint
 
-##POST request 
+##Debug
+serverless logs -f onVoiceOsEntry -t
+
+###POST request 
 need to select X-form data type to pase message for RASA input
 VERIFIED BY POSTMAN
 
