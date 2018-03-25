@@ -34,5 +34,5 @@ once  you deploy will get endpoint
 need to select X-form data type to pase message for RASA input
 VERIFIED BY POSTMAN
 
-{Usersaid: "show me some cats"}
+{payload: "show me some cats"}
 
