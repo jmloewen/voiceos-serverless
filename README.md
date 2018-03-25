@@ -11,10 +11,10 @@ https://7egeo7rfc5.execute-api.us-east-1.amazonaws.com/dev/ping
 
 npm install serverless
 
-Set up AWS IAM serverless-admin with admin priviliages
+Set up AWS IAM serverless-admin with admin privileges
 
-aws -configure
-your key and secret, find your proper region in aws console, last section set to JSON
+aws configure
+your key and secret, find your proper region in aws console (default us-east-1), last section set to json
 
 
 # Installation of python packages on lambda
@@ -30,13 +30,13 @@ ask james to turn on the server because it is too expensive to run the server al
 # Deploy 
 serverless deploy
 serverless deploy function --function OnVoiceOsEntry
-once  you deploy will get endpoint
+once you deploy will get endpoint
 
 ##Debug
 serverless logs -f onVoiceOsEntry -t
 
 ###POST request 
-need to select X-form data type to pase message for RASA input
+need to select X-form data type to parse message for RASA input
 VERIFIED BY POSTMAN
 
 {payload: "show me some cats"}
