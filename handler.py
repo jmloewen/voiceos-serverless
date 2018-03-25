@@ -13,13 +13,15 @@ def endpoint(event, context):
             "request type": "" + str(event)
         }
     elif str(event['requestContext']['httpMethod']) == "POST":
-        print("endpoint context: ", context)
-        userSaid = event['body'].split("=")[1].replace('+', ' ')
-        r = requests.post(RASASERVER_URL, json={"q": userSaid})
+
+        wrappedPayload = json.loads(event['body'])
+        print("wrappedPayload: ", wrappedPayload)
+        payload = wrappedPayload['payload']
+        r = requests.post(RASASERVER_URL, json={"q": payload})
         response = r.json()
 
         body = {
-            "message": userSaid,
+            "message": payload,
             "intent": response['intent']['name'],
             "confidence": response['intent']['confidence']
         }
