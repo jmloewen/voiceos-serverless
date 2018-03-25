@@ -19,12 +19,16 @@ def endpoint(event, context):
         payload = wrappedPayload['payload']
         r = requests.post(RASASERVER_URL, json={"q": payload})
         response = r.json()
-
-        body = {
-            "message": payload,
-            "intent": response['intent']['name'],
-            "confidence": response['intent']['confidence']
+        intentString = response['intent']['name']
+        responsePayload = {
+            "actionType": "speak",
+            "actionDetail": intentString
         }
+        body = {
+            "receiver": wrappedPayload["sender"],
+            "payload": responsePayload
+        }
+
 
     else:
         body={
