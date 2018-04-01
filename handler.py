@@ -1,5 +1,4 @@
 import json
-import datetime
 import requests
 
 RASASERVER_URL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
@@ -15,13 +14,13 @@ def postRasaForIntent(payload):
     r = requests.post(RASASERVER_URL, json={"q": payload})
     return r.json()
 
-def intentNameFromRasaJson(json):
+def intentNameFrom(rasaJson):
     return rasaResponse['intent']['name']
 
-def wrapIntentSpeakAction(json, sender):
+def wrapIntentSpeakAction(rasaJson, sender):
     bodyPayload = {
         "actionType": "speak",
-        "actionDetail": intentNameFromRasaJson(json)
+        "actionDetail": intentNameFrom(rasaJson)
     }
     body = {
         "receiver": sender, # always send back to the sender for now...
