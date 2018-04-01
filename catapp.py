@@ -17,6 +17,7 @@ def endpoint(event, context):
 
     if str(event['requestContext']['httpMethod']) == "POST":
         userSaid = event['body'].split("=")[1].replace('+', ' ')
+
         r = requests.post(VOICEOSURL, json={"q": userSaid})
         response = r.json()
         body = {

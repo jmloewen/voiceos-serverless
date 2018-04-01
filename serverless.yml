@@ -10,7 +10,7 @@ plugins:
   - serverless-python-requirements
 
 functions:
-  currentTime:
+  onVoiceOsEntry:
     handler: handler.endpoint
     events:
       - http:
