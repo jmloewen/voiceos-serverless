@@ -15,7 +15,7 @@ def postRasaForIntent(payload):
     return r.json()
 
 def intentNameFrom(rasaJson):
-    return rasaResponse['intent']['name']
+    return rasaJson['intent']['name']
 
 def wrapIntentSpeakAction(rasaJson, sender):
     bodyPayload = {
