@@ -26,5 +26,5 @@ functions:
     handler: handler.endpoint
     events:
       - http:
-          path: handle
+          path: oldtest
           method: post
