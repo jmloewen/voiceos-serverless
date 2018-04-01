@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 76853b5416f95985f477d52b6af694b3909f0a00
 *.pyc
 *.pyo
 
@@ -70,7 +67,3 @@ typings/
 ### Serverless ###
 # Ignore build directory
 .serverless
-<<<<<<< HEAD
-=======
-
->>>>>>> 76853b5416f95985f477d52b6af694b3909f0a00
