@@ -2,7 +2,8 @@ import json
 
 def handle(event, context):
     body = {
-        "message": "Hello, the current time is meow."
+        "actionType":"speak",
+        "actionDetail":"meow"
     }
 
     response = {
@@ -14,9 +15,10 @@ def handle(event, context):
 #start the cat app.
 def onstart(event, context):
     body = {
-        "message": "Hello, the current time is startmeow."
+        "actionType":"speak",
+        "actionDetail":"meow"
     }
-
+#Response body must be in JSON format, or it will not work with serverless.
     response = {
         "statusCode": 200,
         "body": json.dumps(body)
