@@ -4,14 +4,26 @@ frameworkVersion: ">=1.2.0 <2.0.0"
 
 provider:
   name: aws
-  runtime: python2.7
+  runtime: python3.6
 
 plugins:
   - serverless-python-requirements
 
 functions:
-  handle:
+  CatAppOnStart:
+    handler: catapp.onstart
+    events:
+      - http:
+          path: onstart
+          method: post
+  CatAppHandle:
     handler: catapp.handle
+    events:
+      - http:
+          path: handle
+          method: post
+  OnVoiceOsEntry:
+    handler: handler.endpoint
     events:
       - http:
           path: handle
