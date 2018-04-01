@@ -1,5 +1,5 @@
 <!--
-title: VoiceOS 
+title: VoiceOS
 description: Bouncer makes POST Request to Voice OS deployed on Serverless Lambda, Lambda makes call to rasa and return rasa output to Bouncer
 layout: Doc
 -->
@@ -23,11 +23,11 @@ https://serverless.com/blog/serverless-python-packaging/
 npm install --save-dev serverless-python-requirements
 
 
-# Turn on RASA server 
+# Turn on RASA server
 ask james to turn on the server because it is too expensive to run the server all the time
 
 
-# Deploy 
+# Deploy
 serverless deploy
 serverless deploy function --function OnVoiceOsEntry
 once you deploy will get endpoint
@@ -35,4 +35,4 @@ once you deploy will get endpoint
 ##Debug
 serverless logs -f onVoiceOsEntry -t
 
-
+locally:`serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
