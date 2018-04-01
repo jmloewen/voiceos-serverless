@@ -3,7 +3,7 @@ import datetime
 import requests
 #from SimpleHTTPServer import SimpleHTTPRequestHandler
 #import SocketHandler
-VOICEOSURL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
+RASAURL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
 
 def endpoint(event, context):
     current_time = datetime.datetime.now().time()
@@ -14,7 +14,7 @@ def endpoint(event, context):
         }
     elif str(event['requestContext']['httpMethod']) == "POST":
         userSaid = event['body'].split("=")[1].replace('+', ' ')
-        r = requests.post(VOICEOSURL, json={"q": userSaid})
+        r = requests.post(RASAURL, json={"q": userSaid})
         response = r.json()
         body = {
             "message": userSaid,
