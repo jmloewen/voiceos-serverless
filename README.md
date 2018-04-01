@@ -35,9 +35,4 @@ once you deploy will get endpoint
 ##Debug
 serverless logs -f onVoiceOsEntry -t
 
-###POST request 
-need to select X-form data type to parse message for RASA input
-VERIFIED BY POSTMAN
-
-{payload: "show me some cats"}
 
