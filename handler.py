@@ -29,7 +29,7 @@ def wrapIntentSpeakAction(rasaJson, sender):
     return { "statusCode": 200, "body": json.dumps(body) }
 
 def endpoint(event, context):
-    if !isPostRequest(event):
+    if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
     payload, sender = unwrapEvent(event)
     rasaJson = postRasaForIntent(payload)
