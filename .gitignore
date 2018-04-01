@@ -1,6 +1,7 @@
 
 *.pyc
 *.pyo
+env/
 
 
 ### Node ###
@@ -67,4 +68,3 @@ typings/
 ### Serverless ###
 # Ignore build directory
 .serverless
-
