@@ -3,22 +3,18 @@ import datetime
 import requests
 #from SimpleHTTPServer import SimpleHTTPRequestHandler
 #import SocketHandler
-VOICEOSURL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
+RASAURL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
 
-def endpoint(event, context):
+def handle(event, context):
     current_time = datetime.datetime.now().time()
-#want to be able to:
-#post with two routes - post/handle, and post/onstart.
-#
-    #if str(event['requestContext']['httpMethod']) == "GET":
-    #    body = {
-    #        "request type": "" + str(event)
-    #    }
 
-    if str(event['requestContext']['httpMethod']) == "POST":
+    if str(event['requestContext']['httpMethod']) == "GET":
+        body = {
+            "request type": "" + str(event)
+        }
+    elif str(event['requestContext']['httpMethod']) == "POST":
         userSaid = event['body'].split("=")[1].replace('+', ' ')
-
-        r = requests.post(VOICEOSURL, json={"q": userSaid})
+        r = requests.post(RASAURL, json={"q": userSaid})
         response = r.json()
         body = {
             "message": userSaid,
@@ -31,6 +27,12 @@ def endpoint(event, context):
             "request type": "Neither GET or POST"
         }
 
+
+    #body = {
+    #    "heres a header!"
+    #}
+    #else:
+    #    body = "request type": "" + str(event['requestContext']['httpMethod'])
 
     response = {
         "statusCode": 200,

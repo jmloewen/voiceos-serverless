@@ -10,12 +10,9 @@ plugins:
   - serverless-python-requirements
 
 functions:
-  onVoiceOsEntry:
-    handler: handler.endpoint
+  handle:
+    handler: catapp.handle
     events:
       - http:
-          path: ping
-          method: get
-      - http:
-          path: ping
+          path: handle
           method: post
