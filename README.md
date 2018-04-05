@@ -3,7 +3,7 @@ title: VoiceOS
 description: Bouncer makes POST Request to Voice OS deployed on Serverless Lambda, Lambda makes call to rasa and return rasa output to Bouncer
 layout: Doc
 -->
-#james endpoint
+#James endpoint
 https://7egeo7rfc5.execute-api.us-east-1.amazonaws.com/dev/ping
 
 
@@ -14,7 +14,7 @@ npm install serverless
 Set up AWS IAM serverless-admin with admin privileges
 
 aws configure
-your key and secret, find your proper region in aws console (default us-east-1), last section set to json
+Use your key and secret credentials; Find your proper region in aws console (default us-east-1); Last section set to json
 
 
 # Installation of python packages on lambda
@@ -28,15 +28,15 @@ your key and secret, find your proper region in aws console (default us-east-1),
 
 
 # Turn on RASA server
-ask james to turn on the server because it is too expensive to run the server all the time
+Ask James to turn on the server - it is expensive to run full time
 
 
 # Deploy
-serverless deploy
+Serverless deploy
 `> serverless deploy function --function onVoiceOsEntry`
-once you deploy will get endpoint
+Once you deploy you will get endpoint
 
 ##Debug
 `> serverless logs -f onVoiceOsEntry -t`
 
-locally:`serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
+Locally:`serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
