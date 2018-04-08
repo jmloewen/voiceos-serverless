@@ -16,7 +16,7 @@ def handle(event, context):
 def onstart(event, context):
     body = {
         "actionType":"speak",
-        "actionDetail":"meow"
+        "actionDetail":"meowth thats right"
     }
 #Response body must be in JSON format, or it will not work with serverless.
     response = {
