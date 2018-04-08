@@ -24,6 +24,7 @@ Use your key and secret credentials; Find your proper region in aws console (def
 
 # Activate python virtualenv
 `> virtualenv -p python3 env`
+
 `> source env/bin/activate`
 
 
