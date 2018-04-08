@@ -4,7 +4,14 @@ from lambaFunctionCall.lambaFunctionCall import invokeLamba
 
 RASASERVER_URL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
 
+APP_DICT = {
+    "cats": invokeLamba,
+    "home": None,
+    "image search":  "imageSearch",
+    "voicetunnel": "voicetunnel",
+    "notes": "notes"
 
+}
 
 def isPostRequest(event):
     return str(event['requestContext']['httpMethod']) == "POST"
@@ -38,6 +45,8 @@ def endpoint(event, context):
 
     payload, sender = unwrapEvent(event)
     rasaJson = postRasaForIntent(payload)
-
-    return invokeLamba("catApp", payload)
-    #return wrapIntentSpeakAction(rasaJson, sender)
+    intentName = rasaJson['intent']['name']
+    if intentName == 'cats':
+        return APP_DICT[intentName]('catApp', payload)
+    elif intentName == 'home':
+        return wrapIntentSpeakAction(rasaJson, sender)
