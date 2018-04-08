@@ -14,10 +14,12 @@ def handle(event, context):
 
 #start the cat app.
 def onstart(event, context):
+
     body = {
         "actionType":"speak",
         "actionDetail":"meowth thats right"
     }
+
 #Response body must be in JSON format, or it will not work with serverless.
     response = {
         "statusCode": 200,

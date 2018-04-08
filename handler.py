@@ -9,8 +9,9 @@ def isPostRequest(event):
     return str(event['requestContext']['httpMethod']) == "POST"
 
 def unwrapEvent(event):
-    wrappedPayload = json.loads(event['body'])
-    return wrappedPayload['payload'], wrappedPayload['sender']
+    bodyJson = event['body']
+    bodyDict = json.loads(bodyJson)
+    return bodyDict['payload'], bodyDict['sender']
 
 def postRasaForIntent(payload):
     r = requests.post(RASASERVER_URL, json={"q": payload})
@@ -29,6 +30,10 @@ def wrapIntentSpeakAction(rasaJson, sender):
         "payload": bodyPayload
     }
     return { "statusCode": 200, "body": json.dumps(body) }
+
+def wrapResponse(payload, receiver):
+    return {"payload":payload, "receiver":receiver}
+
 
 def callCatApp():
 
@@ -51,7 +56,13 @@ def endpoint(event, context):
         return { "statusCode": 422, "body": "Request should be POST"}
 
     payload, sender = unwrapEvent(event)
-    rasaJson = postRasaForIntent(payload)
+    print("payload[speech]:", payload['speech'])
 
-    return callCatApp()
+    rasaJson = postRasaForIntent(payload['speech'])
+    # print(rasaJson)
+    parsedResponse = callCatApp()
+    print('parsedResponse:',parsedResponse)
+    response = wrapResponse(callCatApp(), sender)
+    print('response:',response)
+    return response
     #return wrapIntentSpeakAction(rasaJson, sender)

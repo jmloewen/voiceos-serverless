@@ -6,14 +6,20 @@ layout: Doc
 #James endpoint
 https://7egeo7rfc5.execute-api.us-east-1.amazonaws.com/dev/ping
 
+#Jon endpoint
+https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping
+
 
 # Installation
 
 npm install serverless
+pip install -r requirements.txt
 
-Set up AWS IAM serverless-admin with admin privileges
+
+Set up an AWS IAM serverless-admin with Admin privileges
 
 aws configure
+
 Use your key and secret credentials; Find your proper region in aws console (default us-east-1); Last section set to json
 
 
