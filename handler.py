@@ -37,8 +37,6 @@ def callCatApp():
         "actionDetail":"meow"
     }
 
-    #print([x['FunctionName'] for x in lambda_client.list_functions()['Functions']])
-
     response = lambda_client.invoke(
         FunctionName="aws-python-simple-http-endpoint-dev-CatAppOnStart",
         InvocationType="RequestResponse",
@@ -51,8 +49,9 @@ def callCatApp():
 def endpoint(event, context):
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
-    #payload, sender = unwrapEvent(event)
-    #rasaJson = postRasaForIntent(payload)
+
+    payload, sender = unwrapEvent(event)
+    rasaJson = postRasaForIntent(payload)
 
     return callCatApp()
     #return wrapIntentSpeakAction(rasaJson, sender)
