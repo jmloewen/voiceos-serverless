@@ -65,6 +65,9 @@ def testCatappResponse(rasaJson,sender):
     print('responseBody:',responseBody)
     return response    
 
+def switchBetweenApp():
+    print('switchBetweenApp')
+
 def endpoint(event, context):
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
@@ -72,6 +75,8 @@ def endpoint(event, context):
     payload, sender = unwrapEvent(event)
     rasaJson = postRasaForIntent(payload['speech'])
     # return testCatappResponse(rasaJson, sender)
-    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender)  
+    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender) 
+    # switchBetweenApp()
+
     print('wrapIntent:', wrapIntent)
     return wrapIntent
