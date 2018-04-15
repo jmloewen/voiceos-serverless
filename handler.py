@@ -4,13 +4,13 @@ from lambaFunctionCall.lambaFunctionCall import invokeLamba
 
 RASASERVER_URL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
 
-APP_DICT = {
-    "cats": invokeLamba,
+#Given intent, returns app name
+AppNameFromIntent = {
+    "cats": "catApp",
     "home": None,
     "image search":  "imageSearch",
     "voicetunnel": "voicetunnel",
     "notes": "notes"
-
 }
 
 def isPostRequest(event):
@@ -22,18 +22,35 @@ def unwrapEvent(event):
     return bodyDict['payload'], bodyDict['sender']
 
 def postRasaForIntent(payload):
-    # r = requests.post(RASASERVER_URL, json={"q": payload})
-    # return r.json()
+    ##Uncomment this to test next Sunday.
+    ##r = requests.post(RASASERVER_URL, json={"q": payload})
+    ##return r.json()
+    ##Uncomment above to test next sunday.
+
     # mock
-    return {'intent': {'name': 'home'}}
+    #garbo
+    return {'intent': {'name': 'cats'}}
+    #return {}
 
 def intentNameFrom(rasaJson):
     return rasaJson['intent']['name']
 
-def wrapIntentSpeakAction(rasaJson, sender):
+def wrapAppResult(result, sender):
+    body = {
+        "receiver": sender, # always send back to the sender for now...
+        "payload": result
+    }
+
+    return {
+        'statusCode':200,
+        'headers': {'Content-Type':'application/json'},
+        'body': json.dumps(body)
+    }
+
+def wrapIntentSpeakAction(spokenPhrase, sender):
     bodyPayload = {
         "actionType": "speak",
-        "actionDetail": intentNameFrom(rasaJson)
+        "actionDetail": spokenPhrase
     }
     body = {
         "receiver": sender, # always send back to the sender for now...
@@ -72,16 +89,19 @@ def printCopyableJson(event):
 #4. use this endpoint test.
 
 def endpoint(event, context):
-    printCopyableJson(event)
+    #printCopyableJson(event)
 
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
 
     payload, sender = unwrapEvent(event)
     rasaJson = postRasaForIntent(payload['speech'])
-    # return testCatappResponse(rasaJson, sender)
-    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender)
-    # switchBetweenApp()
+    intent = intentNameFrom(rasaJson)
+    appName = AppNameFromIntent.get(intent)
 
-    print('wrapIntent:', wrapIntent)
-    return wrapIntent
+    if not appName:
+        return wrapIntentSpeakAction("you are home", sender)
+
+    # return testCatappResponse(rasaJson, sender)
+    appResult = invokeLamba(appName, payload)
+    return wrapAppResult(appResult, sender)
