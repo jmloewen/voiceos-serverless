@@ -32,7 +32,6 @@ Ask James to turn on the server - it is expensive to run full time
 
 
 ### Deploy
-Serverless deploy
 `> serverless deploy function --function onVoiceOsEntry`
 Once you deploy you will get endpoint
 
