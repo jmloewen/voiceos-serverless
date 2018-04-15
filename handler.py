@@ -17,12 +17,15 @@ def isPostRequest(event):
     return str(event['requestContext']['httpMethod']) == "POST"
 
 def unwrapEvent(event):
-    wrappedPayload = json.loads(event['body'])
-    return wrappedPayload['payload'], wrappedPayload['sender']
+    bodyJson = event['body']
+    bodyDict = json.loads(bodyJson)
+    return bodyDict['payload'], bodyDict['sender']
 
 def postRasaForIntent(payload):
-    r = requests.post(RASASERVER_URL, json={"q": payload})
-    return r.json()
+    # r = requests.post(RASASERVER_URL, json={"q": payload})
+    # return r.json()
+    # mock
+    return {'intent': {'name': 'home'}}
 
 def intentNameFrom(rasaJson):
     return rasaJson['intent']['name']
@@ -36,17 +39,38 @@ def wrapIntentSpeakAction(rasaJson, sender):
         "receiver": sender, # always send back to the sender for now...
         "payload": bodyPayload
     }
-    return { "statusCode": 200, "body": json.dumps(body) }
 
+    return {
+        'statusCode':200,
+        'headers': {'Content-Type':'application/json'},
+        'body': json.dumps(body)
+    }
+
+def wrapResponse(payload, receiver):
+    return {"payload":payload, "receiver":receiver}
+
+
+
+def testCatappResponse(rasaJson,sender):
+    parsedResponse = callCatApp()
+    print('parsedResponse:',parsedResponse)
+    responseBody = wrapResponse(callCatApp(), sender)
+    print('responseBody:',responseBody)
+    return response    
+
+def switchBetweenApp():
+    print('switchBetweenApp')
 
 def endpoint(event, context):
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
 
     payload, sender = unwrapEvent(event)
-    rasaJson = postRasaForIntent(payload)
-    intentName = rasaJson['intent']['name']
-    if intentName == 'cats':
-        return APP_DICT[intentName]('catApp', payload)
-    elif intentName == 'home':
-        return wrapIntentSpeakAction(rasaJson, sender)
+    rasaJson = postRasaForIntent(payload['speech'])
+    # return testCatappResponse(rasaJson, sender)
+    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender) 
+    # switchBetweenApp()
+
+    print('wrapIntent:', wrapIntent)
+    return wrapIntent
+
