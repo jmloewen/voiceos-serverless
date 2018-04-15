@@ -1,9 +1,17 @@
 import json
 import requests
-import boto3
+from lambaFunctionCall.lambaFunctionCall import invokeLamba
 
 RASASERVER_URL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
-lambda_client = boto3.client('lambda', region_name="us-east-1",)
+
+APP_DICT = {
+    "cats": invokeLamba,
+    "home": None,
+    "image search":  "imageSearch",
+    "voicetunnel": "voicetunnel",
+    "notes": "notes"
+
+}
 
 def isPostRequest(event):
     return str(event['requestContext']['httpMethod']) == "POST"
@@ -42,21 +50,6 @@ def wrapResponse(payload, receiver):
     return {"payload":payload, "receiver":receiver}
 
 
-def callCatApp():
-
-    fake = {
-        "actionType":"speak",
-        "actionDetail":"meow"
-    }
-
-    response = lambda_client.invoke(
-        FunctionName="aws-python-simple-http-endpoint-dev-CatAppOnStart",
-        InvocationType="RequestResponse",
-        Payload=json.dumps(fake)
-    )
-    string_response = response["Payload"].read().decode('utf-8')
-    parsed_response = json.loads(string_response)
-    return parsed_response
 
 def testCatappResponse(rasaJson,sender):
     parsedResponse = callCatApp()
@@ -65,6 +58,9 @@ def testCatappResponse(rasaJson,sender):
     print('responseBody:',responseBody)
     return response    
 
+def switchBetweenApp():
+    print('switchBetweenApp')
+
 def endpoint(event, context):
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
@@ -72,6 +68,9 @@ def endpoint(event, context):
     payload, sender = unwrapEvent(event)
     rasaJson = postRasaForIntent(payload['speech'])
     # return testCatappResponse(rasaJson, sender)
-    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender)  
+    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender) 
+    # switchBetweenApp()
+
     print('wrapIntent:', wrapIntent)
     return wrapIntent
+
