@@ -1,4 +1,53 @@
 {
-  "requestContext": {"httpMethod":"POST"},
-  "body":"{\"sender\": \"108-7074inletdriveburnabybc\", \"payload\":\"Take me home\"}"
+  "body": "{\"sender\":\"df459b18-9563-836d-f343-75de6b8055de\",\"payload\":{\"speech\":\"Can you show me some cats\",\"endpoint\":\"https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping\"}}",
+  "headers": {
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "CA",
+    "Host": "zydkkkbc6k.execute-api.us-east-1.amazonaws.com",
+    "Via": "1.1 72f0ac9702110cafbb646d71a297e2c7.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "qFICmtzLxq_-vD8_QjjfMYmAEkWgAGPHE1S1oKqTY9T6KPixbXrVwg==",
+    "X-Amzn-Trace-Id": "Root=1-5ad3b943-0318e32488a24406a2851ac6",
+    "X-Forwarded-For": "142.58.34.225, 52.46.17.14",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https",
+    "content-type": "application/x-www-form-urlencoded"
+  },
+  "httpMethod": "POST",
+  "isBase64Encoded": false,
+  "path": "/ping",
+  "pathParameters": null,
+  "queryStringParameters": null,
+  "requestContext": {
+    "accountId": "794656507305",
+    "apiId": "zydkkkbc6k",
+    "extendedRequestId": "FZnimFYfIAMFsLw=",
+    "httpMethod": "POST",
+    "identity": {
+      "accessKey": null,
+      "accountId": null,
+      "caller": null,
+      "cognitoAuthenticationProvider": null,
+      "cognitoAuthenticationType": null,
+      "cognitoIdentityId": null,
+      "cognitoIdentityPoolId": null,
+      "sourceIp": "142.58.34.225",
+      "user": null,
+      "userAgent": null,
+      "userArn": null
+    },
+    "path": "/dev/ping",
+    "protocol": "HTTP/1.1",
+    "requestId": "8c33507a-40ed-11e8-b47d-79ea45e93278",
+    "requestTime": "15/Apr/2018:20:42:43 +0000",
+    "requestTimeEpoch": 1523824963841,
+    "resourceId": "o8qkb0",
+    "resourcePath": "/ping",
+    "stage": "dev"
+  },
+  "resource": "/ping",
+  "stageVariables": null
 }

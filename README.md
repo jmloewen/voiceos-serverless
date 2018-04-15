@@ -46,4 +46,6 @@ Once you deploy you will get endpoint
 `> serverless logs -f onVoiceOsEntry -t`
 
 ### Locally:
+[Generate Test File]( https://gist.github.com/jmloewen/84b1ed61598df55ab4a7033ac1edbf43/raw/277586307aa54d0e92242f6e19423a91430f46af/gistfile1.txt)
+
 `serverless invoke local -f onVoiceOsEntry -p endpointTest.json`

@@ -56,21 +56,32 @@ def testCatappResponse(rasaJson,sender):
     print('parsedResponse:',parsedResponse)
     responseBody = wrapResponse(callCatApp(), sender)
     print('responseBody:',responseBody)
-    return response    
+    return response
 
 def switchBetweenApp():
     print('switchBetweenApp')
 
+def printCopyableJson(event):
+    print()
+    print(json.dumps(event, indent=2, sort_keys=True))
+    print()
+
+#1. get the event data we want in endpointtest.JSON
+#2. print it out, like we have below.
+#3. take this printed content and put it into endpointtest.JSON, save it.
+#4. use this endpoint test.
+
 def endpoint(event, context):
+    printCopyableJson(event)
+
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
 
     payload, sender = unwrapEvent(event)
     rasaJson = postRasaForIntent(payload['speech'])
     # return testCatappResponse(rasaJson, sender)
-    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender) 
+    wrapIntent =  wrapIntentSpeakAction(rasaJson, sender)
     # switchBetweenApp()
 
     print('wrapIntent:', wrapIntent)
     return wrapIntent
-
