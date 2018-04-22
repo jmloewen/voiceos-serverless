@@ -1,10 +1,13 @@
 import json
 import requests
-from lambaFunctionCall.lambaFunctionCall import invokeLamba
+from lambdaFunctionCall.lambdaFunctionCall import invokeLambda
+
+#'onVoiceOsEntry'
 
 RASASERVER_URL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
 
 #Given intent, returns app name
+#This must be modularized at some point.
 AppNameFromIntent = {
     "cats": "catApp",
     "home": None,
@@ -66,8 +69,6 @@ def wrapIntentSpeakAction(spokenPhrase, sender):
 def wrapResponse(payload, receiver):
     return {"payload":payload, "receiver":receiver}
 
-
-
 def testCatappResponse(rasaJson,sender):
     parsedResponse = callCatApp()
     print('parsedResponse:',parsedResponse)
@@ -88,8 +89,10 @@ def printCopyableJson(event):
 #3. take this printed content and put it into endpointtest.JSON, save it.
 #4. use this endpoint test.
 
+
+#Need a swapping mechanism to go between home and catapp.
+#Need a function for swapping to an app once we have gotten appname from AppNameFromIntent.
 def endpoint(event, context):
-    #printCopyableJson(event)
 
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
@@ -102,6 +105,5 @@ def endpoint(event, context):
     if not appName:
         return wrapIntentSpeakAction("you are home", sender)
 
-    # return testCatappResponse(rasaJson, sender)
-    appResult = invokeLamba(appName, payload)
+    appResult = invokeLambda(appName, payload)
     return wrapAppResult(appResult, sender)
