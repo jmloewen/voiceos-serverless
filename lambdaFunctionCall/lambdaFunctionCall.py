@@ -6,8 +6,7 @@ FUNCTIONS_DICT = {
     "catApp": "aws-python-simple-http-endpoint-dev-CatAppOnStart"
 }
 
-def invokeLamba(functionName, payload):
-
+def invokeLambda(functionName, payload):
     try:
         response = lambda_client.invoke(
             FunctionName=FUNCTIONS_DICT[functionName],
@@ -18,8 +17,8 @@ def invokeLamba(functionName, payload):
         string_response = response["Payload"].read().decode('utf-8')
         parsed_response = json.loads(string_response)
     except Exception as e:
-        print("invokeLamba error: ", e)
+        print("invokeLambda error: ", e)
         parsed_response = {
-            "InvokeLambaError": e
+            "InvokeLambdaError": e
         }
     return parsed_response

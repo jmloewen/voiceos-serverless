@@ -1,5 +1,5 @@
 {
-  "body": "{\"sender\":\"df459b18-9563-836d-f343-75de6b8055de\",\"payload\":{\"speech\":\"Take me home\",\"endpoint\":\"https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping\"}}",
+  "body": "{\"sender\":\"df459b18-9563-836d-f343-75de6b8055de\",\"payload\":{\"speech\":\"Can you show me some cats\",\"endpoint\":\"https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping\"}}",
   "headers": {
     "CloudFront-Forwarded-Proto": "https",
     "CloudFront-Is-Desktop-Viewer": "true",

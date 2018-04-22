@@ -3,10 +3,12 @@ title: VoiceOS
 description: Bouncer makes POST Request to Voice OS deployed on Serverless Lambda, Lambda makes call to rasa and return rasa output to Bouncer
 layout: Doc
 -->
-# James endpoint
+# Endpoints
+
+#### James
 https://7egeo7rfc5.execute-api.us-east-1.amazonaws.com/dev/ping
 
-#Jon endpoint
+#### Jon
 https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping
 
 
@@ -46,4 +48,6 @@ Once you deploy you will get endpoint
 `> serverless logs -f onVoiceOsEntry -t`
 
 ### Locally:
+[Generate Test File]( https://gist.github.com/jmloewen/84b1ed61598df55ab4a7033ac1edbf43)
+
 `serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
