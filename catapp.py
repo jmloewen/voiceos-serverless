@@ -1,28 +1,36 @@
 import json
 
+#Continuous commands within catapp.
+#Need to be able to swap out with Home.
 def handle(event, context):
-    body = {
-        "actionType":"speak",
-        "actionDetail":"meow"
+    state = {
+        "directory":"catApp",
+        "appState":{
+            "status":"OK"
+        }
     }
 
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(body)
+    body = {
+        "actionType":"speak",
+        "actionDetail":"meow",
+        "state":state
     }
-    return response
+
+    return body
 
 #start the cat app.
 def onstart(event, context):
+    state = {
+        "directory":"catApp",
+        "appState":{
+            "status":"OK"
+        }
+    }
 
     body = {
         "actionType":"speak",
-        "actionDetail":"meowth thats right"
+        "actionDetail":"meowth thats right",
+        "state":state
     }
 
-#Response body must be in JSON format, or it will not work with serverless.
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(body)
-    }
-    return response
+    return body

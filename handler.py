@@ -26,14 +26,11 @@ def unwrapEvent(event):
 
 def postRasaForIntent(payload):
     ##Uncomment this to test next Sunday.
-    ##r = requests.post(RASASERVER_URL, json={"q": payload})
-    ##return r.json()
-    ##Uncomment above to test next sunday.
+    r = requests.post(RASASERVER_URL, json={"q": payload})
+    return r.json()
 
-    # mock
-    #garbo
-    return {'intent': {'name': 'cats'}}
-    #return {}
+
+    #return {'intent': {'name': 'cats'}}
 
 def intentNameFrom(rasaJson):
     return rasaJson['intent']['name']
@@ -93,7 +90,6 @@ def printCopyableJson(event):
 #Need a swapping mechanism to go between home and catapp.
 #Need a function for swapping to an app once we have gotten appname from AppNameFromIntent.
 def endpoint(event, context):
-
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
 
