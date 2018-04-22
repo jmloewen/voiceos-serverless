@@ -1,5 +1,6 @@
+
 {
-  "body": "{\"sender\":\"df459b18-9563-836d-f343-75de6b8055de\",\"payload\":{\"speech\":\"Take me home\",\"endpoint\":\"https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping\"}}",
+  "body": "{\"sender\":\"b3e88ff4-a47b-dd9f-e9a5-fa934e3b5d3c\",\"payload\":{\"speech\":\"cat\",\"endpoint\":\"https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping\",\"state\":{\"directory\":\"home/catApp\"}}}",
   "headers": {
     "CloudFront-Forwarded-Proto": "https",
     "CloudFront-Is-Desktop-Viewer": "true",
@@ -8,10 +9,10 @@
     "CloudFront-Is-Tablet-Viewer": "false",
     "CloudFront-Viewer-Country": "CA",
     "Host": "zydkkkbc6k.execute-api.us-east-1.amazonaws.com",
-    "Via": "1.1 72f0ac9702110cafbb646d71a297e2c7.cloudfront.net (CloudFront)",
-    "X-Amz-Cf-Id": "qFICmtzLxq_-vD8_QjjfMYmAEkWgAGPHE1S1oKqTY9T6KPixbXrVwg==",
-    "X-Amzn-Trace-Id": "Root=1-5ad3b943-0318e32488a24406a2851ac6",
-    "X-Forwarded-For": "142.58.34.225, 52.46.17.14",
+    "Via": "1.1 5e453826b188a987bac1483174eb6e97.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "Y_DXYU5bEQegwzWUAXJV3Be1p9oG3eFBQtQO2rfGlKJjtjETPMgNQg==",
+    "X-Amzn-Trace-Id": "Root=1-5add1c14-fdbf4dc8eda00958330ef740",
+    "X-Forwarded-For": "142.58.34.225, 52.46.17.84",
     "X-Forwarded-Port": "443",
     "X-Forwarded-Proto": "https",
     "content-type": "application/x-www-form-urlencoded"
@@ -24,7 +25,7 @@
   "requestContext": {
     "accountId": "794656507305",
     "apiId": "zydkkkbc6k",
-    "extendedRequestId": "FZnimFYfIAMFsLw=",
+    "extendedRequestId": "FxFTOF6_oAMFS_w=",
     "httpMethod": "POST",
     "identity": {
       "accessKey": null,
@@ -41,9 +42,9 @@
     },
     "path": "/dev/ping",
     "protocol": "HTTP/1.1",
-    "requestId": "8c33507a-40ed-11e8-b47d-79ea45e93278",
-    "requestTime": "15/Apr/2018:20:42:43 +0000",
-    "requestTimeEpoch": 1523824963841,
+    "requestId": "bccc723c-4685-11e8-9e4d-8bbd5ed98662",
+    "requestTime": "22/Apr/2018:23:34:44 +0000",
+    "requestTimeEpoch": 1524440084692,
     "resourceId": "o8qkb0",
     "resourcePath": "/ping",
     "stage": "dev"

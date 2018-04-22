@@ -2,14 +2,10 @@ import boto3
 import json
 lambda_client = boto3.client('lambda', region_name="us-east-1",)
 
-FUNCTIONS_DICT = {
-    "catApp": "aws-python-simple-http-endpoint-dev-CatAppOnStart"
-}
-
 def invokeLambda(functionName, payload):
     try:
         response = lambda_client.invoke(
-            FunctionName=FUNCTIONS_DICT[functionName],
+            FunctionName=functionName,
             InvocationType="RequestResponse",
             Payload=json.dumps(payload)
         )

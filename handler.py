@@ -3,8 +3,13 @@ import requests
 from lambdaFunctionCall.lambdaFunctionCall import invokeLambda
 
 #'onVoiceOsEntry'
-
 RASASERVER_URL = "http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse"
+
+#All functions available to VoiceOS.
+FUNCTIONS_DICT = {
+    "catAppOnStart": "aws-python-simple-http-endpoint-dev-CatAppOnStart",
+    "catAppHandle": "aws-python-simple-http-endpoint-dev-CatAppHandle"
+}
 
 #Given intent, returns app name
 #This must be modularized at some point.
@@ -86,10 +91,14 @@ def printCopyableJson(event):
 #3. take this printed content and put it into endpointtest.JSON, save it.
 #4. use this endpoint test.
 
+def extractAppDirectory(payload):
+    return payload["state"]["directory"]
+
 
 #Need a swapping mechanism to go between home and catapp.
 #Need a function for swapping to an app once we have gotten appname from AppNameFromIntent.
 def endpoint(event, context):
+    # printCopyableJson(event)
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
 
@@ -101,5 +110,18 @@ def endpoint(event, context):
     if not appName:
         return wrapIntentSpeakAction("you are home", sender)
 
-    appResult = invokeLambda(appName, payload)
+    #Check if catapp has been called previously (call start or handle?)
+    directory = extractAppDirectory(payload)
+
+    # print("Appname: ", appName)
+
+    functionNickname = appName
+    if appName not in directory:
+        functionNickname = functionNickname + "OnStart"
+    else:
+        functionNickname = functionNickname + "Handle"
+
+    print("fNickname: ", functionNickname)
+    #invoke the handle function of that app.
+    appResult = invokeLambda(FUNCTIONS_DICT[functionNickname], payload)
     return wrapAppResult(appResult, sender)
