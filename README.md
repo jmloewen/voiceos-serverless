@@ -28,26 +28,26 @@ Use your key and secret credentials; Find your proper region in aws console (def
 # Installation of python packages on lambda
 [serverless packaging](https://serverless.com/blog/serverless-python-packaging/)
 
-`> npm install --save-dev serverless-python-requirements`
+`npm install --save-dev serverless-python-requirements`
 
 # Activate python virtualenv
-`> virtualenv -p python3 env`
+`virtualenv -p python3 env`
 
-`> source env/bin/activate`
+`source env/bin/activate`
 
 
 # Turn on RASA server
-Ask James to turn on the server - it is expensive to run full time
+EC2 server can be configured to on and off automatically
 
 
 ### Deploy
-`> serverless deploy function --function onVoiceOsEntry`
+`serverless deploy function --function onVoiceOsEntry`
 Once you deploy you will get endpoint
 
 ### Debug
-`> serverless logs -f onVoiceOsEntry -t`
+`serverless logs -f onVoiceOsEntry -t`
 
 ### Locally:
 [Generate Test File]( https://gist.github.com/jmloewen/84b1ed61598df55ab4a7033ac1edbf43)
 
-`serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
+`serverless invoke local -f onVoiceOsEntry -p onVoiceOsEntryTest.json`
