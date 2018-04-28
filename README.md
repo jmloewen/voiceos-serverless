@@ -11,6 +11,9 @@ https://7egeo7rfc5.execute-api.us-east-1.amazonaws.com/dev/ping
 #### Jon
 https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping
 
+#### kai
+https://hap2a5df4m.execute-api.us-east-1.amazonaws.com/dev/ping
+
 
 # Installation
 

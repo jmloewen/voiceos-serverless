@@ -31,11 +31,11 @@ def unwrapEvent(event):
 
 def postRasaForIntent(payload):
     ##Uncomment this to test next Sunday.
-    r = requests.post(RASASERVER_URL, json={"q": payload})
-    return r.json()
+    # r = requests.post(RASASERVER_URL, json={"q": payload})
+    # return r.json()
 
-
-    #return {'intent': {'name': 'cats'}}
+    # MOCK
+    return {'intent': {'name': 'cats'}}
 
 def intentNameFrom(rasaJson):
     return rasaJson['intent']['name']
