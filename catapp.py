@@ -4,7 +4,7 @@ import json
 #Need to be able to swap out with Home.
 def handle(event, context):
     state = {
-        "directory":"catApp",
+        "directory":"home/catApp",
         "appState":{
             "status":"OK"
         }
@@ -21,7 +21,7 @@ def handle(event, context):
 #start the cat app.
 def onstart(event, context):
     state = {
-        "directory":"catApp",
+        "directory":"home/catApp",
         "appState":{
             "status":"OK"
         }
