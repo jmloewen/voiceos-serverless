@@ -14,13 +14,14 @@ https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping
 
 # Installation
 
-npm install serverless
-pip install -r requirements.txt
+`> npm install serverless`
+
+`> pip install -r requirements.txt`
 
 
 Set up an AWS IAM serverless-admin with Admin privileges
 
-aws configure
+`> aws configure`
 
 Use your key and secret credentials; Find your proper region in aws console (default us-east-1); Last section set to json
 
@@ -50,4 +51,4 @@ Once you deploy you will get endpoint
 ### Locally:
 [Generate Test File]( https://gist.github.com/jmloewen/84b1ed61598df55ab4a7033ac1edbf43)
 
-`serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
+`> serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
