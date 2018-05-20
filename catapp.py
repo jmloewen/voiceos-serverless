@@ -12,8 +12,9 @@ def handle(event, context):
 
     body = {
         "actionType":"show_image", 
-        "actionDetail":"https://i.redditmedia.com/OL_p0HRQr9chiwy3-1L5UCuTUgk5vNJE0NJOt4Jw7oE.jpg?s=98fcfbe17c8950b7c8a9e882aa42862b", 
-        ## object
+        "actionDetail":{
+            "url_key" :"https://i.redditmedia.com/OL_p0HRQr9chiwy3-1L5UCuTUgk5vNJE0NJOt4Jw7oE.jpg?s=98fcfbe17c8950b7c8a9e882aa42862b", 
+        }
         "state":state
     }
 
