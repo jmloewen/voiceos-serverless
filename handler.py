@@ -52,14 +52,27 @@ def wrapAppResult(result, sender):
         'body': json.dumps(body)
     }
 
+def getState(directory, status):
+    state = {
+        "directory":directory,
+        "appState":{
+            "status":status
+        }
+    }
+    return state
+
 def wrapIntentSpeakAction(spokenPhrase, sender):
+
+    state = getState("home", "OK")
+
     bodyPayload = {
         "actionType": "speak",
         "actionDetail": spokenPhrase
     }
     body = {
         "receiver": sender, # always send back to the sender for now...
-        "payload": bodyPayload
+        "payload": bodyPayload,
+        "state":state
     }
 
     return {
