@@ -11,7 +11,7 @@ https://7egeo7rfc5.execute-api.us-east-1.amazonaws.com/dev/ping
 #### Jon
 https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping
 
-#### kai
+#### kai (Currently Most Up to Date)
 https://hap2a5df4m.execute-api.us-east-1.amazonaws.com/dev/ping
 
 
@@ -40,8 +40,10 @@ Use your key and secret credentials; Find your proper region in aws console (def
 
 
 # Turn on RASA server
-EC2 server can be configured to on and off automatically
+EC2 server can be configured to on and off automatically, Currently turns on every sunday from 1 to 5
 
+# Testing RASA server
+curl 'http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse?q=take+me+home'
 
 ### Deploy
 `serverless deploy function --function onVoiceOsEntry`
@@ -54,3 +56,18 @@ Once you deploy you will get endpoint
 [Generate Test File]( https://gist.github.com/jmloewen/84b1ed61598df55ab4a7033ac1edbf43)
 
 `serverless invoke local -f onVoiceOsEntry -p onVoiceOsEntryTest.json`
+
+### End to end testing
+Install simple wedsocket chrome extension, then open up the socket connection to bouncer
+
+`ws://secure-lowlands-10237.herokuapp.com/websocket/`
+
+Once websocket has been opened, enter the following json for request
+
+`{"speech":"show me some cats","endpoint":"https://hap2a5df4m.execute-api.us-east-1.amazonaws.com/dev/ping","state":{"directory":"home"}}`
+
+expect following response
+
+`{"actionType":"speak","actionDetail":"meowth thats right","state":{"directory":"home/catApp","appState":{"status":"OK"}}}`
+
+
