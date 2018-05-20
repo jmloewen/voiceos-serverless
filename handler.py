@@ -67,12 +67,13 @@ def wrapIntentSpeakAction(spokenPhrase, sender):
 
     bodyPayload = {
         "actionType": "speak",
-        "actionDetail": spokenPhrase
+        "actionDetail": spokenPhrase,
+        "state":state
     }
     body = {
         "receiver": sender, # always send back to the sender for now...
-        "payload": bodyPayload,
-        "state":state
+        "payload": bodyPayload
+
     }
 
     return {
