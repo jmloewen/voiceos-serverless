@@ -11,8 +11,9 @@ def handle(event, context):
     }
 
     body = {
-        "actionType":"speak",
-        "actionDetail":"meow",
+        "actionType":"show_image", 
+        "actionDetail":"https://i.redditmedia.com/OL_p0HRQr9chiwy3-1L5UCuTUgk5vNJE0NJOt4Jw7oE.jpg?s=98fcfbe17c8950b7c8a9e882aa42862b", 
+        ## object
         "state":state
     }
 
