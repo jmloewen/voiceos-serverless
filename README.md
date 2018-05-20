@@ -11,7 +11,7 @@ https://7egeo7rfc5.execute-api.us-east-1.amazonaws.com/dev/ping
 #### Jon
 https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping
 
-#### kai
+#### kai (Currently Most Up to Date)
 https://hap2a5df4m.execute-api.us-east-1.amazonaws.com/dev/ping
 
 
@@ -40,8 +40,10 @@ Use your key and secret credentials; Find your proper region in aws console (def
 
 
 # Turn on RASA server
-EC2 server can be configured to on and off automatically
+EC2 server can be configured to on and off automatically, Currently turns on every sunday from 1 to 5
 
+# Testing RASA server
+curl 'http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse?q=take+me+home'
 
 ### Deploy
 `serverless deploy function --function onVoiceOsEntry`
