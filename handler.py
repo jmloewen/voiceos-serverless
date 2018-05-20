@@ -106,6 +106,7 @@ def printCopyableJson(event):
 #4. use this endpoint test.
 
 def extractAppDirectory(payload):
+    print("payload is extractAppDirectory:", payload)
     return payload["state"]["directory"]
 
 
@@ -127,7 +128,7 @@ def endpoint(event, context):
     #Check if catapp has been called previously (call start or handle?)
     directory = extractAppDirectory(payload)
 
-    # print("Appname: ", appName)
+    print("extractAppDirectory(payload): ", directory)
 
     functionNickname = appName
     if appName not in directory:
