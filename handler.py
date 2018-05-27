@@ -34,8 +34,8 @@ def postRasaForIntent(payload):
     r = requests.post(RASASERVER_URL, json={"q": payload})
     return r.json()
 
-
-    #return {'intent': {'name': 'cats'}}
+    # MOCK
+    # return {'intent': {'name': 'cats'}}
 
 def intentNameFrom(rasaJson):
     return rasaJson['intent']['name']
@@ -52,14 +52,28 @@ def wrapAppResult(result, sender):
         'body': json.dumps(body)
     }
 
+def getState(directory, status):
+    state = {
+        "directory":directory,
+        "appState":{
+            "status":status
+        }
+    }
+    return state
+
 def wrapIntentSpeakAction(spokenPhrase, sender):
+
+    state = getState("home", "OK")
+
     bodyPayload = {
         "actionType": "speak",
-        "actionDetail": spokenPhrase
+        "actionDetail": spokenPhrase,
+        "state":state
     }
     body = {
         "receiver": sender, # always send back to the sender for now...
         "payload": bodyPayload
+
     }
 
     return {
@@ -92,6 +106,7 @@ def printCopyableJson(event):
 #4. use this endpoint test.
 
 def extractAppDirectory(payload):
+    print("payload is extractAppDirectory:", payload)
     return payload["state"]["directory"]
 
 
@@ -113,7 +128,7 @@ def endpoint(event, context):
     #Check if catapp has been called previously (call start or handle?)
     directory = extractAppDirectory(payload)
 
-    # print("Appname: ", appName)
+    print("extractAppDirectory(payload): ", directory)
 
     functionNickname = appName
     if appName not in directory:
