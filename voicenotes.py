@@ -1,15 +1,13 @@
 def payloadFrom(event):
-    bodyJson = event['body']
-    bodyDict = json.loads(bodyJson)
-    return bodyDict.get('payload', None)
+    return event
 
 def readyStateTransition(str):
     newState = 'ready'
     toSpeak = None
-    if str is "read" or str is "read read" or str is 'reed':
+    if str == "read" or str == "read read" or str == 'reed':
         toSpeak = "When would you like me to read?"
         newState = "reading"
-    elif str is "write" or str is "right" or str is "right right":
+    elif str == "write" or str == "right" or str == "right right":
         toSpeak = "What would you like to note?"
         newState = "writing"
     else:
@@ -20,7 +18,7 @@ def readyStateTransition(str):
 def readingStateTransition(str):
     newState = 'reading'
     toSpeak = None
-    if str is "just now":
+    if str == "just now":
         # summary = summarizeArr(self.notes.lastBunchofNotes())
         toSpeak = "summary just now"
         return "ready", toSpeak
@@ -51,30 +49,37 @@ def writingStateTransition(str):
 
 
 def handle(event, context):
+    print("event: ", event)
     payload = payloadFrom(event)
     wholeState = None
     appState = None
     previousState = None
+    speech = None
     if payload:
-        wholeState = payload.get()
+        wholeState = payload.get('state')
+        speech = payload.get('speech')
         if wholeState:
             appState = wholeState.get('appState')
             if appState:
                 previousState = appState.get('state')
-
+    if not payload: print("missing payload")
+    if not wholeState: print("missing wholeState")
+    if not appState: print("missing appState")
+    if not previousState: print("missing previousState")
     newState = None
     toSpeak = None
-    if previousState is 'greeting' or previousState is 'ready':
+    if previousState == 'greeting' or previousState == 'ready':
         print('previously was greeting')
-        newState, toSpeak = handleReadyState(str)
-    elif previousState is 'reading':
+        newState, toSpeak = readyStateTransition(speech)
+    elif previousState == 'reading':
         print('previously was reading')
-        newState, toSpeak = handleReadingState(str)
-    elif previousState is 'writing':
+        newState, toSpeak = readingStateTransition(speech)
+    elif previousState == 'writing':
         print('previously was writing')
-        newState, toSpeak = handleWritingState(str)
-
-    newState = {
+        newState, toSpeak = writingStateTransition(speech)
+    else:
+        print("OH NOES!", previousState)
+    state = {
         "directory":"home/voicenotes",
         "appState":{
             "state":newState
@@ -83,8 +88,8 @@ def handle(event, context):
 
 
     body = {
-        "actionType":"record_notes",
-        "actionDetail": "recording",
+        "actionType":"speak",
+        "actionDetail": toSpeak,
         # "actionDetail":{
         #     "url_key" :random.choice(catUrls),
         # }
