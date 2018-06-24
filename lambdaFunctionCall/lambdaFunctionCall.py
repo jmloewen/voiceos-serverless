@@ -2,6 +2,12 @@ import boto3
 import json
 lambda_client = boto3.client('lambda', region_name="us-east-1",)
 
+# Exported Function:
+# Input:
+# string: functionName
+# dictionary: payload
+# Output:
+# response dictionary
 def invokeLambda(functionName, payload):
     try:
         response = lambda_client.invoke(

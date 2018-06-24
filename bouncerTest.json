@@ -1,3 +1,4 @@
-{"speech":"Can you show me some cats",
+{
+  "speech":"Can you show me some cats",
   "endpoint":"https://zydkkkbc6k.execute-api.us-east-1.amazonaws.com/dev/ping"
 }
