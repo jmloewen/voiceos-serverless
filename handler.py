@@ -26,6 +26,8 @@ AppNameFromIntent = {
 def isPostRequest(event):
     return str(event['requestContext']['httpMethod']) == "POST"
 
+# Unpack the json request body
+# return tuple of payload and sender
 def unwrapEvent(event):
     bodyJson = event['body']
     bodyDict = json.loads(bodyJson)
@@ -99,9 +101,9 @@ def switchBetweenApp():
     print('switchBetweenApp')
 
 def printCopyableJson(event):
-    print()
+    print('#############printCopyableJson(event)###############')
     print(json.dumps(event, indent=2, sort_keys=True))
-    print()
+    print('#############printCopyableJson(event)###############')
 
 #1. get the event data we want in endpointtest.JSON
 #2. print it out, like we have below.
@@ -121,8 +123,11 @@ def endpoint(event, context):
         return { "statusCode": 422, "body": "Request should be POST"}
 
     payload, sender = unwrapEvent(event)
+
+    # request to rasa
     rasaJson = postRasaForIntent(payload['speech'])
     intent = intentNameFrom(rasaJson)
+
     appName = AppNameFromIntent.get(intent)
 
     if not appName:
@@ -133,6 +138,7 @@ def endpoint(event, context):
 
     print("extractAppDirectory(payload): ", directory)
 
+    # Make functionNickname to run app by key in FUNCTIONS_DICT
     functionNickname = appName
     if appName not in directory:
         functionNickname = functionNickname + "OnStart"
@@ -142,4 +148,5 @@ def endpoint(event, context):
     print("fNickname: ", functionNickname)
     #invoke the handle function of that app.
     appResult = invokeLambda(FUNCTIONS_DICT[functionNickname], payload)
+
     return wrapAppResult(appResult, sender)
