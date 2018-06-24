@@ -30,8 +30,9 @@ def isPostRequest(event):
 # return tuple of payload and sender
 def unwrapEvent(event):
     bodyJson = event['body']
+    # Actual content client sends to endpoint
     bodyDict = json.loads(bodyJson)
-    return bodyDict['payload'], bodyDict['sender']
+    return bodyDict
 
 def postRasaForIntent(payload):
     ##Uncomment this to test next Sunday.
@@ -87,7 +88,7 @@ def wrapIntentSpeakAction(spokenPhrase, sender):
     }
 
 def wrapResponse(payload, receiver):
-    return {"payload":payload, "receiver":receiver}
+    return {"payload": payload, "receiver": receiver}
 
 # TODO: implement callCatApp() function
 # def testCatappResponse(rasaJson,sender):
@@ -110,33 +111,29 @@ def printCopyableJson(event):
 #3. take this printed content and put it into endpointtest.JSON, save it.
 #4. use this endpoint test.
 
-def extractAppDirectory(payload):
-    print("payload is extractAppDirectory:", payload)
-    return payload["state"]["directory"]
-
-
-#Need a swapping mechanism to go between home and catapp.
-#Need a function for swapping to an app once we have gotten appname from AppNameFromIntent.
+# Need a swapping mechanism to go between home and catapp.
+# Need a function for swapping to an app once we have gotten appname from AppNameFromIntent.
 def endpoint(event, context):
     # printCopyableJson(event)
     if not isPostRequest(event):
         return { "statusCode": 422, "body": "Request should be POST"}
 
-    payload, sender = unwrapEvent(event)
-
+    eventBody = unwrapEvent(event)
+    print('eventBody: ', eventBody)
     # request to rasa
-    rasaJson = postRasaForIntent(payload['speech'])
+    rasaJson = postRasaForIntent(eventBody['payload']['speech'])
     intent = intentNameFrom(rasaJson)
 
     appName = AppNameFromIntent.get(intent)
 
     if not appName:
-        return wrapIntentSpeakAction("you are home", sender)
+        return wrapIntentSpeakAction("you are home", eventBody['sender'])
 
     #Check if catapp has been called previously (call start or handle?)
-    directory = extractAppDirectory(payload)
+    # Extract app directory:
+    directory = eventBody['payload']['state']['directory']
 
-    print("extractAppDirectory(payload): ", directory)
+    print("eventBody['payload']['state']['directory']: ", directory)
 
     # Make functionNickname to run app by key in FUNCTIONS_DICT
     functionNickname = appName
@@ -147,6 +144,6 @@ def endpoint(event, context):
 
     print("fNickname: ", functionNickname)
     #invoke the handle function of that app.
-    appResult = invokeLambda(FUNCTIONS_DICT[functionNickname], payload)
+    appResult = invokeLambda(FUNCTIONS_DICT[functionNickname], eventBody['payload'])
 
-    return wrapAppResult(appResult, sender)
+    return wrapAppResult(appResult, eventBody['sender'])
