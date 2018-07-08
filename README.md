@@ -56,7 +56,8 @@ Once you deploy you will get endpoint
 ### Locally:
 [Generate Test File]( https://gist.github.com/jmloewen/84b1ed61598df55ab4a7033ac1edbf43)
 
-`> serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
+`> serverless invoke local -f onVoiceOsEntry -p tests/onVoiceEntry.json`
+`> serverless invoke local -f VoiceNotesHandle -p tests/voicenotes/greetingToWriting.json`
 
 ### End to end testing
 Install simple wedsocket chrome extension, then open up the socket connection to bouncer

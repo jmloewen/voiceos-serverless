@@ -1,3 +1,5 @@
+import stringToDateRange
+
 def payloadFrom(event):
     import json
     return json.loads(event['body'])['payload']
@@ -14,21 +16,21 @@ def readyStateTransition(str):
 
 
 def readingStateTransition(str):
-    newState = 'reading'
     toSpeak = None
     if str == "just now":
         # summary = summarizeArr(self.notes.lastBunchofNotes())
         toSpeak = "summary just now"
         return "ready", toSpeak
 
-    dateRange = (None, None) # std.getDateUnix(str)
+    dateRange = stringToDateRange.getDateUnix(str)
+    print("dateRange: ", dateRange)
     if not dateRange:
-        return newState, "Could not recognize that timeframe"
+        return 'reading', "Could not recognize that timeframe. try again."
 
     begin, end = dateRange
     notes = None # notes.findInRange(begin, end)
     if not notes:
-        return newState, "Could not find notes in that time"
+        return 'reading', "Could not find notes in that time. try again."
     # write_message(summarizeArr(list(notes.values() ) ) )
     return 'ready', 'here is a summary of what you said in that time'
 

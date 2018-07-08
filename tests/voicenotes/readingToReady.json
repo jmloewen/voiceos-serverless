@@ -1,0 +1,53 @@
+{
+  "body": "{\"sender\":\"1a703017-5515-3c11-22c8-bfe863881206\",\"payload\":{\"speech\":\"yesterday\",\"endpoint\":\"https:\/\/zydkkkbc6k.execute-api.us-east-1.amazonaws.com\/dev\/ping\",\"state\": {\"directory\": \"home/voicenotes\", \"appState\": {\"state\": \"reading\"}}}}",
+  "headers": {
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "US",
+    "Host": "zydkkkbc6k.execute-api.us-east-1.amazonaws.com",
+    "Via": "1.1 1feb77032a34552dda45f3c78a5c3dd7.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "289hAdCXT9wrX5pRezhEFdgVOt1n1YNkGekFZkwye-ICQHVBK7S5PQ==",
+    "X-Amzn-Trace-Id": "Root=1-5add189a-cc4837602c04b5305e18e5d4",
+    "X-Forwarded-For": "54.147.32.197, 54.239.145.56",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https",
+    "content-type": "application/x-www-form-urlencoded"
+  },
+  "httpMethod": "POST",
+  "isBase64Encoded": false,
+  "path": "/ping",
+  "pathParameters": null,
+  "queryStringParameters": null,
+  "requestContext": {
+    "accountId": "794656507305",
+    "apiId": "zydkkkbc6k",
+    "extendedRequestId": "FxDINGyTIAMFW6w=",
+    "httpMethod": "POST",
+    "identity": {
+      "accessKey": null,
+      "accountId": null,
+      "caller": null,
+      "cognitoAuthenticationProvider": null,
+      "cognitoAuthenticationType": null,
+      "cognitoIdentityId": null,
+      "cognitoIdentityPoolId": null,
+      "sourceIp": "54.147.32.197",
+      "user": null,
+      "userAgent": null,
+      "userArn": null
+    },
+    "path": "/dev/ping",
+    "protocol": "HTTP/1.1",
+    "requestId": "aa7b5725-4683-11e8-9e6a-6776d412cd02",
+    "requestTime": "22/Apr/2018:23:19:54 +0000",
+    "requestTimeEpoch": 1524439194967,
+    "resourceId": "o8qkb0",
+    "resourcePath": "/ping",
+    "stage": "dev"
+  },
+  "resource": "/ping",
+  "stageVariables": null
+}
