@@ -41,7 +41,7 @@ Use your key and secret credentials; Find your proper region in aws console (def
 
 
 # Turn on RASA server
-EC2 server can be configured to on and off automatically, Currently turns on every sunday from 1 to 5
+EC2 server can be configured to on and off automatically, Currently turns on every Sunday from 1 to 5
 
 # Testing RASA server
 curl 'http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse?q=take+me+home'
@@ -59,7 +59,7 @@ Once you deploy you will get endpoint
 `> serverless invoke local -f onVoiceOsEntry -p endpointTest.json`
 
 ### End to end testing
-Install simple wedsocket chrome extension, then open up the socket connection to bouncer
+Install simple websocket chrome extension, then open up the socket connection to bouncer
 
 `ws://secure-lowlands-10237.herokuapp.com/websocket/`
 
