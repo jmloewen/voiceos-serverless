@@ -41,7 +41,7 @@ Use your key and secret credentials; Find your proper region in aws console (def
 
 
 # Turn on RASA server
-EC2 server can be configured to turn on and off automatically. It currently turns on every Sunday from 1 to 5
+EC2 server can be configured to turn on and off automatically. It currently turns on every Sunday from 1pm to 5pm
 
 # Testing RASA server
 curl 'http://ec2-34-218-219-244.us-west-2.compute.amazonaws.com:5000/parse?q=take+me+home'
